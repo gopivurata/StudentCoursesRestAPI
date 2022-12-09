@@ -5,10 +5,10 @@ pool:
 jobs:
 - job: docker-build
   steps:
-  - script: "docker image build -t a-d_student:1.0 ."
-  - script: "docker image tag student:1.0 gopivurata/a-d_student:1.0"
-  - script: "docker image push gopivurata/a-d_student:1.0"
-  - script: "docker container run --name my-student-1 -d -p 8099:8080 gopivurata/a-d_student:1.0"
+  - script: "docker image build -t a-d-student:1.0 ."
+  - script: "docker image tag a-d-student:1.0 gopivurata/a-d-student:1.0"
+  - script: "docker image push gopivurata/a-d-student:1.0"
+  - script: "docker container run --name my-student-1 -d -p 8099:8080 gopivurata/a-d-student:1.0"
   #- script: "docker compose up -d"
 
 
