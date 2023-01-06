@@ -13,13 +13,16 @@ pipeline {
         }
         stage('docker build') {
             environment { 
-                AN_ACCESS_KEY = credentials('JFrog') 
+                AN_ACCESS_KEY = credentials('docker-credentials') 
             }
             steps {
                 sh 'docker image build -t student-rest-api:1.0 .'
-                sh 'docker image tag student-rest-api:1.0 cdcd.jfrog.io/docker/student-rest-api:1.0'
-               // sh 'docker login -ugopivurata1992@gmail.com cdcd.jfrog.io'
-                sh 'docker image push cdcd.jfrog.io/docker/student-rest-api:1.0'
+                sh 'docker image tag student-rest-api:1.0 gopivurata/student-rest-api:1.0'
+                //sh 'echo $docker-credentials | docker login -u gopivurata --password-stdin'
+                sh 'docker image push gopivurata/student-rest-api:1.0'
+               // sh 'docker image tag student-rest-api:1.0 cdcd.jfrog.io/docker/student-rest-api:1.0'
+                //sh 'docker login -ugopivurata1992@gmail.com cdcd.jfrog.io'
+               // sh 'docker image push cdcd.jfrog.io/docker/student-rest-api:1.0'
         
             }
         }
