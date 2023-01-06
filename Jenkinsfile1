@@ -1,0 +1,28 @@
+pipeline {
+    agent {label 'node'}
+    parameters {
+        string(name: 'branch', defaultValue: 'master', description: 'job build on default branch master')
+    }
+    triggers { pollSCM('* * * * *') }
+    stages {
+        stage('git') {
+            steps {
+                git url: 'https://github.com/gopivurata/StudentCoursesRestAPI.git',
+                    branch: "${params.branch}"
+            }
+        }
+        stage('docker build') {
+            environment { 
+                AN_ACCESS_KEY = credentials('JFrog') 
+            }
+            steps {
+                sh 'docker image build -t student-rest-api:1.0 .'
+                sh 'docker image tag student-rest-api:1.0 cdcd.jfrog.io/docker/student-rest-api:1.0'
+               // sh 'docker login -ugopivurata1992@gmail.com cdcd.jfrog.io'
+                sh 'docker image push cdcd.jfrog.io/docker/student-rest-api:1.0'
+        
+            }
+        }
+        
+    }
+}
