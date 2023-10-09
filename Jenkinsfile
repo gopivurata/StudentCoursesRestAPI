@@ -10,11 +10,11 @@ pipeline {
         }
         stage ('docker image build') {
             steps {
-                sh 'docker image build -t student:1.2 .'
-                sh 'docker image tag student:1.2 gopivurata/student:1.2'
-                sh 'docker image push gopivurata/student:1.2'
-                sh 'docker container run --name my-student-1 -d -p 8099:8080 gopivurata/student:1.2'
-               // sh 'docker compose up -d'
+                sh 'docker image build -t student:0.0.1 .'
+                sh 'docker image tag student:1.2 gopivurata/student:0.0.1'
+                sh 'docker login https://hub.docker.com -u gopivurata  --password-stdin GOPI$2727'
+                sh 'docker image push gopivurata/student:0.0.1'
+                sh 'docker compose up -d'
             }
         }
     }
