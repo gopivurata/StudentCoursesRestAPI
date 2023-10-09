@@ -9,7 +9,7 @@ services:
       - students-private-net
     ports:
       - target: 8080
-        published: 8080
+        published: 3537
         protocol: tcp
         mode: host
     environment:
