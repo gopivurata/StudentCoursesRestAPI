@@ -23,8 +23,10 @@ pipeline {
                         sh 'docker image tag student:0.0.2 gopivurata/student:0.0.2'
                         sh 'docker image push gopivurata/student:0.0.2'
                         sh 'docker compose up -d'
-                    }
+                        }
+                }
             }
         }
     }
 }
+
