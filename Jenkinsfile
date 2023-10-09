@@ -12,7 +12,6 @@ pipeline {
             steps {
                 sh 'docker image build -t student:0.0.1 .'
                 sh 'docker image tag student:0.0.1 gopivurata/student:0.0.1'
-                sh 'echo "GOPI\$2727" | docker login --username gopivurata --password-stdin'
                 sh 'docker image push gopivurata/student:0.0.1'
                 sh 'docker compose up -d'
             }
